@@ -25,7 +25,7 @@ type MovieDetails struct {
 	OriginCountry       []string            `json:"origin_country"`
 	ProductionCompanies []ProductionCompany `json:"production_companies"`
 	ProductionCountries []ProductionCountry `json:"production_countries"`
-	ReleaseDate         string              `json:"release_date"`
+	ReleaseDate         TmdbDate            `json:"release_date"`
 	Revenue             int64               `json:"revenue"`
 	Runtime             int                 `json:"runtime"`
 	SpokenLanguages     []SpokenLanguage    `json:"spoken_languages"`

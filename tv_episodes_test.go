@@ -3,7 +3,7 @@ package tmdb
 func (suite *TMBDTestSuite) TestGetTVEpisodeDetails() {
 	got, err := suite.client.GetTVEpisodeDetails(gotID, 1, 1, nil)
 	suite.Nil(err)
-	suite.Equal("2011-04-17", got.AirDate)
+	suite.Equal("2011-04-17", got.AirDate.String())
 }
 
 func (suite *TMBDTestSuite) TestGetTVEpisodeDetailsFail() {
@@ -16,7 +16,7 @@ func (suite *TMBDTestSuite) TestGetTVEpisodeDetailsWithOptions() {
 	options["language"] = "pt-BR"
 	got, err := suite.client.GetTVEpisodeDetails(gotID, 1, 1, options)
 	suite.Nil(err)
-	suite.Equal("2011-04-17", got.AirDate)
+	suite.Equal("2011-04-17", got.AirDate.String())
 }
 
 func (suite *TMBDTestSuite) TestGetTVEpisodeChanges() {

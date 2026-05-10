@@ -404,7 +404,7 @@ func (suite *TMBDTestSuite) TestDeleteMovieRating() {
 	suite.Nil(err)
 	response, err := suite.client.DeleteMovieRating(aquamanID, nil)
 	suite.Nil(err)
-	suite.Equal(13, response.StatusCode)
+	suite.Equal(StatusCodeItemDeletedSuccessfully, response.StatusCode)
 }
 
 func (suite *TMBDTestSuite) TestDeleteMovieRatingFail() {

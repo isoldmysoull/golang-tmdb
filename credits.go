@@ -17,7 +17,7 @@ type CreditsDetails struct {
 		Name             string   `json:"name,omitempty"`           // TV
 		FirstAirDate     string   `json:"first_air_date,omitempty"` // TV
 		PosterPath       string   `json:"poster_path"`
-		ReleaseDate      string   `json:"release_date,omitempty"` // Movie
+		ReleaseDate      TmdbDate `json:"release_date,omitempty"` // Movie
 		Title            string   `json:"title,omitempty"`        // Movie
 		Video            bool     `json:"video,omitempty"`        // Movie
 		GenreIDs         []int64  `json:"genre_ids"`
@@ -28,12 +28,13 @@ type CreditsDetails struct {
 		Popularity       float32  `json:"popularity"`
 		Character        string   `json:"character"`
 		Episodes         []struct {
-			AirDate       string `json:"air_date"`
-			EpisodeNumber int64  `json:"episode_number"`
-			Name          string `json:"name"`
-			Overview      string `json:"overview"`
-			SeasonNumber  int    `json:"season_number"`
-			StillPath     string `json:"still_path"`
+			AirDate       TmdbDate    `json:"air_date"`
+			EpisodeNumber int64       `json:"episode_number"`
+			EpisodeType   EpisodeType `json:"episode_type"`
+			Name          string      `json:"name"`
+			Overview      string      `json:"overview"`
+			SeasonNumber  int         `json:"season_number"`
+			StillPath     string      `json:"still_path"`
 		} `json:"episodes,omitempty"` // TV
 		Seasons []Season `json:"seasons,omitempty"` // TV
 		VoteMetrics
@@ -54,7 +55,7 @@ type CreditsDetails struct {
 			OriginalTitle    string   `json:"original_title,omitempty"`
 			Overview         string   `json:"overview"`
 			PosterPath       string   `json:"poster_path"`
-			ReleaseDate      string   `json:"release_date,omitempty"`
+			ReleaseDate      TmdbDate `json:"release_date,omitempty"`
 			Title            string   `json:"title,omitempty"`
 			Video            bool     `json:"video,omitempty"`
 			Popularity       float32  `json:"popularity"`

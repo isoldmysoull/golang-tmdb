@@ -4,19 +4,20 @@ import "fmt"
 
 // TVSeasonDetails is a struct for details JSON response.
 type TVSeasonDetails struct {
-	IDString string `json:"_id"`
-	AirDate  string `json:"air_date"`
+	IDString string   `json:"_id"`
+	AirDate  TmdbDate `json:"air_date"`
 	Episodes []struct {
-		AirDate        string `json:"air_date"`
-		EpisodeNumber  int    `json:"episode_number"`
-		ID             int64  `json:"id"`
-		Name           string `json:"name"`
-		Overview       string `json:"overview"`
-		ProductionCode string `json:"production_code"`
-		Runtime        int    `json:"runtime"`
-		SeasonNumber   int    `json:"season_number"`
-		ShowID         int64  `json:"show_id"`
-		StillPath      string `json:"still_path"`
+		AirDate        TmdbDate    `json:"air_date"`
+		EpisodeNumber  int         `json:"episode_number"`
+		EpisodeType    EpisodeType `json:"episode_type"`
+		ID             int64       `json:"id"`
+		Name           string      `json:"name"`
+		Overview       string      `json:"overview"`
+		ProductionCode string      `json:"production_code"`
+		Runtime        int         `json:"runtime"`
+		SeasonNumber   int         `json:"season_number"`
+		ShowID         int64       `json:"show_id"`
+		StillPath      string      `json:"still_path"`
 		VoteMetrics
 		Crew []struct {
 			ID          int64  `json:"id"`
@@ -125,8 +126,9 @@ type TVSeasonChanges struct {
 			Iso639_1  string `json:"iso_639_1"`
 			Iso3166_1 string `json:"iso_3166_1"`
 			Value     struct {
-				EpisodeID     int64 `json:"episode_id"`
-				EpisodeNumber int   `json:"episode_number"`
+				EpisodeID     int64       `json:"episode_id"`
+				EpisodeNumber int         `json:"episode_number"`
+				EpisodeType   EpisodeType `json:"episode_type"`
 			} `json:"value"`
 		} `json:"items"`
 		Key string `json:"key"`

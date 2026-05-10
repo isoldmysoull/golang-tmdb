@@ -62,8 +62,8 @@ type Client struct {
 
 // Response type is a struct for http responses.
 type Response struct {
-	StatusCode    int    `json:"status_code"`
-	StatusMessage string `json:"status_message"`
+	StatusCode    StatusCode `json:"status_code"`
+	StatusMessage string     `json:"status_message"`
 }
 
 // Init setups the Client with an apiKey.
@@ -145,11 +145,17 @@ func (c *Client) get(url string, data any) error {
 		if err != nil {
 			return err
 		}
-		defer res.Body.Close()
 		if res.StatusCode == http.StatusTooManyRequests && c.autoRetry {
-			time.Sleep(retryDuration(res))
+			io.Copy(io.Discard, res.Body)
+			res.Body.Close()
+			select {
+			case <-ctx.Done():
+				return ctx.Err()
+			case <-time.After(retryDuration(res)):
+			}
 			continue
 		}
+		defer res.Body.Close()
 		if res.StatusCode == http.StatusNoContent {
 			return nil
 		}
@@ -201,11 +207,17 @@ func (c *Client) request(
 		if err != nil {
 			return errors.New(err.Error())
 		}
-		defer res.Body.Close()
 		if c.autoRetry && shouldRetry(res.StatusCode) {
-			time.Sleep(retryDuration(res))
+			io.Copy(io.Discard, res.Body)
+			res.Body.Close()
+			select {
+			case <-ctx.Done():
+				return ctx.Err()
+			case <-time.After(retryDuration(res)):
+			}
 			continue
 		}
+		defer res.Body.Close()
 		// Checking if the response is greater or equal
 		// to 300 or less than 200.
 		if res.StatusCode >= http.StatusMultipleChoices ||
@@ -254,9 +266,9 @@ func (c *Client) GetBaseURL() string {
 
 // Error type represents an error returned by the TMDB API.
 type Error struct {
-	StatusMessage string `json:"status_message,omitempty"`
-	Success       bool   `json:"success,omitempty"`
-	StatusCode    int    `json:"status_code,omitempty"`
+	StatusMessage string     `json:"status_message,omitempty"`
+	Success       bool       `json:"success,omitempty"`
+	StatusCode    StatusCode `json:"status_code,omitempty"`
 }
 
 func (e Error) Error() string {

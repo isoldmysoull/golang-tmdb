@@ -6,9 +6,18 @@ import (
 	json "github.com/goccy/go-json"
 )
 
+type EpisodeType string
+
+const (
+	EpisodeTypeStandard        EpisodeType = "standard"
+	EpisodeTypeSeasonFinale    EpisodeType = "finale"
+	EpisodeTypeMidSeasonFinale EpisodeType = "mid_season"
+	EpisodeTypeSpecial         EpisodeType = "special"
+)
+
 // TVEpisodeDetails type is a struct for details JSON response.
 type TVEpisodeDetails struct {
-	AirDate string `json:"air_date"`
+	AirDate TmdbDate `json:"air_date"`
 	Crew    []struct {
 		ID          int64  `json:"id"`
 		CreditID    string `json:"credit_id"`
@@ -18,7 +27,8 @@ type TVEpisodeDetails struct {
 		Gender      int    `json:"gender"`
 		ProfilePath string `json:"profile_path"`
 	} `json:"crew"`
-	EpisodeNumber int `json:"episode_number"`
+	EpisodeNumber int         `json:"episode_number"`
+	EpisodeType   EpisodeType `json:"episode_type"`
 	GuestStars    []struct {
 		ID          int64  `json:"id"`
 		Name        string `json:"name"`
@@ -328,8 +338,8 @@ func (c *Client) GetTVEpisodeTranslations(
 
 // TVEpisodeRate type is a struct for rate JSON response.
 type TVEpisodeRate struct {
-	StatusCode    int    `json:"status_code"`
-	StatusMessage string `json:"status_message"`
+	StatusCode    StatusCode `json:"status_code"`
+	StatusMessage string     `json:"status_message"`
 }
 
 // GetTVEpisodeVideos get the videos that have been added to a TV episode.

@@ -26,7 +26,7 @@ type ListDetails struct {
 		Overview         string   `json:"overview"`
 		Popularity       float32  `json:"popularity"`
 		PosterPath       string   `json:"poster_path"`
-		ReleaseDate      string   `json:"release_date,omitempty"` // Movie
+		ReleaseDate      TmdbDate `json:"release_date,omitempty"` // Movie
 		Title            string   `json:"title,omitempty"`        // Movie
 		Video            bool     `json:"video,omitempty"`        // Movie
 		VoteMetrics

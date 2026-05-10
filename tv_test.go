@@ -429,7 +429,7 @@ func (suite *TMBDTestSuite) TestDeleteTVShowRating() {
 	suite.Nil(err)
 	response, err := suite.client.DeleteTVShowRating(vikingsID, nil)
 	suite.Nil(err)
-	suite.Equal(13, response.StatusCode)
+	suite.Equal(StatusCodeItemDeletedSuccessfully, response.StatusCode)
 }
 
 func (suite *TMBDTestSuite) TestDeleteTVShowRatingFail() {

@@ -5,19 +5,19 @@ import "fmt"
 // GuestSessionRatedMovies type is a struct for rated movies JSON response.
 type GuestSessionRatedMovies struct {
 	Results []struct {
-		Adult            bool    `json:"adult"`
-		BackdropPath     string  `json:"backdrop_path"`
-		GenreIDs         []int64 `json:"genre_ids"`
-		ID               int64   `json:"id"`
-		OriginalLanguage string  `json:"original_language"`
-		OriginalTitle    string  `json:"original_title"`
-		Overview         string  `json:"overview"`
-		ReleaseDate      string  `json:"release_date"`
-		PosterPath       string  `json:"poster_path"`
-		Popularity       float32 `json:"popularity"`
-		Title            string  `json:"title"`
-		Video            bool    `json:"video"`
-		Rating           float32 `json:"rating"`
+		Adult            bool     `json:"adult"`
+		BackdropPath     string   `json:"backdrop_path"`
+		GenreIDs         []int64  `json:"genre_ids"`
+		ID               int64    `json:"id"`
+		OriginalLanguage string   `json:"original_language"`
+		OriginalTitle    string   `json:"original_title"`
+		Overview         string   `json:"overview"`
+		ReleaseDate      TmdbDate `json:"release_date"`
+		PosterPath       string   `json:"poster_path"`
+		Popularity       float32  `json:"popularity"`
+		Title            string   `json:"title"`
+		Video            bool     `json:"video"`
+		Rating           float32  `json:"rating"`
 		VoteMetrics
 	} `json:"results"`
 	PaginatedResultsMeta
@@ -92,16 +92,17 @@ func (c *Client) GetGuestSessionRatedTVShows(
 // GuestSessionRatedTVEpisodes type is a struct for rated tv episodes JSON response.
 type GuestSessionRatedTVEpisodes struct {
 	Results []struct {
-		AirDate        string  `json:"air_date"`
-		EpisodeNumber  int     `json:"episode_number"`
-		ID             int64   `json:"id"`
-		Name           string  `json:"name"`
-		Overview       string  `json:"overview"`
-		ProductionCode string  `json:"production_code"`
-		SeasonNumber   int     `json:"season_number"`
-		ShowID         int64   `json:"show_id"`
-		StillPath      string  `json:"still_path"`
-		Rating         float32 `json:"rating"`
+		AirDate        TmdbDate    `json:"air_date"`
+		EpisodeNumber  int         `json:"episode_number"`
+		EpisodeType    EpisodeType `json:"episode_type"`
+		ID             int64       `json:"id"`
+		Name           string      `json:"name"`
+		Overview       string      `json:"overview"`
+		ProductionCode string      `json:"production_code"`
+		SeasonNumber   int         `json:"season_number"`
+		ShowID         int64       `json:"show_id"`
+		StillPath      string      `json:"still_path"`
+		Rating         float32     `json:"rating"`
 		VoteMetrics
 	} `json:"results"`
 	PaginatedResultsMeta

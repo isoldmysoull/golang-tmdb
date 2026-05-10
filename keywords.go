@@ -32,18 +32,18 @@ func (c *Client) GetKeywordDetails(
 type KeywordMovies struct {
 	ID      int64 `json:"id"`
 	Results []struct {
-		Adult            bool    `json:"adult"`
-		BackdropPath     string  `json:"backdrop_path"`
-		GenreIDs         []int64 `json:"genre_ids"`
-		ID               int64   `json:"id"`
-		OriginalLanguage string  `json:"original_language"`
-		OriginalTitle    string  `json:"original_title"`
-		Overview         string  `json:"overview"`
-		PosterPath       string  `json:"poster_path"`
-		ReleaseDate      string  `json:"release_date"`
-		Title            string  `json:"title"`
-		Video            bool    `json:"video"`
-		Popularity       float32 `json:"popularity"`
+		Adult            bool     `json:"adult"`
+		BackdropPath     string   `json:"backdrop_path"`
+		GenreIDs         []int64  `json:"genre_ids"`
+		ID               int64    `json:"id"`
+		OriginalLanguage string   `json:"original_language"`
+		OriginalTitle    string   `json:"original_title"`
+		Overview         string   `json:"overview"`
+		PosterPath       string   `json:"poster_path"`
+		ReleaseDate      TmdbDate `json:"release_date"`
+		Title            string   `json:"title"`
+		Video            bool     `json:"video"`
+		Popularity       float32  `json:"popularity"`
 		VoteMetrics
 	} `json:"results"`
 	PaginatedResultsMeta

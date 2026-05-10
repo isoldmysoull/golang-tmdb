@@ -69,30 +69,31 @@ type PaginatedResultsMeta struct {
 
 // Season represents a TV show season with details such as air date, episode count, name, overview, poster path, season number, vote average, and associated show ID.
 type Season struct {
-	AirDate      string  `json:"air_date"`
-	EpisodeCount int     `json:"episode_count"`
-	ID           int64   `json:"id"`
-	Name         string  `json:"name"`
-	Overview     string  `json:"overview"`
-	PosterPath   string  `json:"poster_path"`
-	SeasonNumber int     `json:"season_number"`
-	VoteAverage  float32 `json:"vote_average,omitempty"`
-	ShowID       int64   `json:"show_id,omitempty"`
+	AirDate      TmdbDate `json:"air_date"`
+	EpisodeCount int      `json:"episode_count"`
+	ID           int64    `json:"id"`
+	Name         string   `json:"name"`
+	Overview     string   `json:"overview"`
+	PosterPath   string   `json:"poster_path"`
+	SeasonNumber int      `json:"season_number"`
+	VoteAverage  float32  `json:"vote_average,omitempty"`
+	ShowID       int64    `json:"show_id,omitempty"`
 }
 
 // LastEpisodeToAir represents the details of the most recently aired episode of a TV show.
 // It includes information such as air date, episode and season numbers, production code,
 // episode overview, voting statistics, and related media paths.
 type LastEpisodeToAir struct {
-	AirDate        string `json:"air_date"`
-	EpisodeNumber  int    `json:"episode_number"`
-	ID             int64  `json:"id"`
-	Name           string `json:"name"`
-	Overview       string `json:"overview"`
-	ProductionCode string `json:"production_code"`
-	SeasonNumber   int    `json:"season_number"`
-	ShowID         int64  `json:"show_id"`
-	StillPath      string `json:"still_path"`
+	AirDate        TmdbDate    `json:"air_date"`
+	EpisodeNumber  int         `json:"episode_number"`
+	EpisodeType    EpisodeType `json:"episode_type"`
+	ID             int64       `json:"id"`
+	Name           string      `json:"name"`
+	Overview       string      `json:"overview"`
+	ProductionCode string      `json:"production_code"`
+	SeasonNumber   int         `json:"season_number"`
+	ShowID         int64       `json:"show_id"`
+	StillPath      string      `json:"still_path"`
 	VoteMetrics
 }
 
@@ -100,15 +101,16 @@ type LastEpisodeToAir struct {
 // It includes information such as air date, episode and season numbers, show and episode IDs,
 // episode name and overview, production code, still image path, and voting statistics.
 type NextEpisodeToAir struct {
-	AirDate        string `json:"air_date"`
-	EpisodeNumber  int    `json:"episode_number"`
-	ID             int64  `json:"id"`
-	Name           string `json:"name"`
-	Overview       string `json:"overview"`
-	ProductionCode string `json:"production_code"`
-	SeasonNumber   int    `json:"season_number"`
-	ShowID         int64  `json:"show_id"`
-	StillPath      string `json:"still_path"`
+	AirDate        TmdbDate    `json:"air_date"`
+	EpisodeNumber  int         `json:"episode_number"`
+	EpisodeType    EpisodeType `json:"episode_type"`
+	ID             int64       `json:"id"`
+	Name           string      `json:"name"`
+	Overview       string      `json:"overview"`
+	ProductionCode string      `json:"production_code"`
+	SeasonNumber   int         `json:"season_number"`
+	ShowID         int64       `json:"show_id"`
+	StillPath      string      `json:"still_path"`
 	VoteMetrics
 }
 

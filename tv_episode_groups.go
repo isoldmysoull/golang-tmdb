@@ -16,8 +16,9 @@ type TVEpisodeGroupsDetails struct {
 		Name     string `json:"name"`
 		Order    int    `json:"order"`
 		Episodes []struct {
-			AirDate        string          `json:"air_date"`
+			AirDate        TmdbDate        `json:"air_date"`
 			EpisodeNumber  int             `json:"episode_number"`
+			EpisodeType    EpisodeType     `json:"episode_type"`
 			ID             int64           `json:"id"`
 			Name           string          `json:"name"`
 			Overview       string          `json:"overview"`

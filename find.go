@@ -4,21 +4,7 @@ import "fmt"
 
 // FindByID type is a struct for find JSON response.
 type FindByID struct {
-	MovieResults []struct {
-		Adult            bool    `json:"adult"`
-		BackdropPath     string  `json:"backdrop_path"`
-		GenreIDs         []int64 `json:"genre_ids"`
-		ID               int64   `json:"id"`
-		OriginalLanguage string  `json:"original_language"`
-		OriginalTitle    string  `json:"original_title"`
-		Overview         string  `json:"overview"`
-		PosterPath       string  `json:"poster_path"`
-		ReleaseDate      string  `json:"release_date"`
-		Title            string  `json:"title"`
-		Video            bool    `json:"video"`
-		Popularity       float32 `json:"popularity"`
-		VoteMetrics
-	} `json:"movie_results,omitempty"`
+	MovieResults  []MovieResult `json:"movie_results,omitempty"`
 	PersonResults []struct {
 		Adult    bool   `json:"adult"`
 		Gender   int    `json:"gender"`
@@ -39,7 +25,7 @@ type FindByID struct {
 			Overview         string   `json:"overview"`
 			Popularity       float32  `json:"popularity"`
 			PosterPath       string   `json:"poster_path"`
-			ReleaseDate      string   `json:"release_date,omitempty"` // Movie
+			ReleaseDate      TmdbDate `json:"release_date,omitempty"` // Movie
 			Title            string   `json:"title,omitempty"`        // Movie
 			Video            bool     `json:"video,omitempty"`        // Movie
 			VoteMetrics
@@ -48,38 +34,26 @@ type FindByID struct {
 		ProfilePath        string  `json:"profile_path"`
 		Popularity         float32 `json:"popularity"`
 	} `json:"person_results,omitempty"`
-	TvResults []struct {
-		OriginalName     string   `json:"original_name"`
-		ID               int64    `json:"id"`
-		Name             string   `json:"name"`
-		FirstAirDate     string   `json:"first_air_date"`
-		PosterPath       string   `json:"poster_path"`
-		GenreIDs         []int64  `json:"genre_ids"`
-		OriginalLanguage string   `json:"original_language"`
-		BackdropPath     string   `json:"backdrop_path"`
-		Overview         string   `json:"overview"`
-		OriginCountry    []string `json:"origin_country"`
-		Popularity       float32  `json:"popularity"`
-		VoteMetrics
-	} `json:"tv_results,omitempty"`
+	TvResults        []TVShowResult `json:"tv_results,omitempty"`
 	TvEpisodeResults []struct {
-		AirDate        string `json:"air_date"`
-		EpisodeNumber  int    `json:"episode_number"`
-		ID             int64  `json:"id"`
-		Name           string `json:"name"`
-		Overview       string `json:"overview"`
-		ProductionCode string `json:"production_code"`
-		SeasonNumber   int    `json:"season_number"`
-		ShowID         int64  `json:"show_id"`
-		StillPath      string `json:"still_path"`
+		AirDate        TmdbDate    `json:"air_date"`
+		EpisodeNumber  int         `json:"episode_number"`
+		EpisodeType    EpisodeType `json:"episode_type"`
+		ID             int64       `json:"id"`
+		Name           string      `json:"name"`
+		Overview       string      `json:"overview"`
+		ProductionCode string      `json:"production_code"`
+		SeasonNumber   int         `json:"season_number"`
+		ShowID         int64       `json:"show_id"`
+		StillPath      string      `json:"still_path"`
 		VoteMetrics
 	} `json:"tv_episode_results,omitempty"`
 	TvSeasonResults []struct {
-		AirDate      string `json:"air_date"`
-		Name         string `json:"name"`
-		ID           int64  `json:"id"`
-		SeasonNumber int    `json:"season_number"`
-		ShowID       int64  `json:"show_id"`
+		AirDate      TmdbDate `json:"air_date"`
+		Name         string   `json:"name"`
+		ID           int64    `json:"id"`
+		SeasonNumber int      `json:"season_number"`
+		ShowID       int64    `json:"show_id"`
 	} `json:"tv_season_results,omitempty"`
 }
 
